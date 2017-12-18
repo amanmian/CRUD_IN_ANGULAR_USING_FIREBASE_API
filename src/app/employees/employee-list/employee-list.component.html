@@ -1,0 +1,17 @@
+<ul class="list-group hover">
+  <div class="row">
+    <div class="col-md-9">
+  <li class="list-group-item" *ngFor="let employee of employeelist" style="height:60px" >
+   <b> {{employee.name}} </b> - {{employee.position}}  <div style="color:  	#5cb85c"><b> {{employee.office}} </b> </div>
+  </li>
+    </div>
+    <div class="col-md-3">
+        <li class="list-group-item" *ngFor="let employee of employeelist" (click)="onItemClick(employee)" style="height:60px">
+        <button class="btn btn-info" type="button">Update</button>        
+        
+        </li>
+     
+        
+    </div>
+  </div>
+</ul>

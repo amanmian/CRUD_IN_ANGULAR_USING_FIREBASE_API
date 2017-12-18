@@ -1,0 +1,31 @@
+<html>
+  
+  <body><br><br><br> 
+  <div class="col-md-6 col-md-offset-3">
+      <h2>Sign Into Your Account</h2>
+      <br>
+      <br>
+          <form name="form" (ngSubmit)="f.form.valid && login(f)" #f="ngForm" novalidate >
+              <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !UserEmail.valid }">
+                  <label for="username">Username</label>
+                  <input type="text" class="form-control"  name="UserEmail" [(ngModel)]="model.UserEmail" #UserEmail="ngModel" required />
+                  <div *ngIf="f.submitted && !UserEmail.valid" class="help-block">Username is required</div>       
+              </div>
+              <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !UserPassword.valid }">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control"  name="UserPassword" [(ngModel)]="model.UserPassword" #UserPassword="ngModel" required />
+                  <div *ngIf="f.submitted && !UserPassword.valid" class="help-block">Password is required</div>{{model.UserPassword}}
+              </div>
+              <a href="#">Forgot password?</a>
+              <br>
+              <br>
+              <div class="form-group">
+                  <button type="submit" routerLink='./employee' class="btn btn-primary" [disabled]="!f.valid">Login</button>
+                  <!--<button [disabled]="loading" class="btn btn-primary">Login</button>--> 
+              </div>
+          </form>
+      </div>
+  </body>
+</html>
+
+

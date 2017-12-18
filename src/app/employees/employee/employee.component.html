@@ -1,0 +1,111 @@
+<form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
+  <input type="hidden" name="$key" id="name" #$key="ngModel" [(ngModel)]="employeeService.selectedEmployee.$key">
+
+  <div class="form-group">
+    <label>Name</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-user"></i>
+      </div>
+      <input type="text" size="50" style="width: 70%" class="form-control" (keypress)="a($event)" pattern="[a-zA-Z][a-zA-Z ]+"
+        name="name" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.name" placeholder="Full Name" maxlength="30"
+        required>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Email</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-envelope-o"></i>
+      </div>
+      <input type="text" style="width: 70%" class="form-control" name="email" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.email"
+        placeholder="Email Address" maxlength="50" email required>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Phone</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-phone"></i>
+      </div>
+      <input type="text" style="width: 10%" class="form-control" (keypress)="restrictNumeric($event)" name="code" #name="ngModel"
+        [(ngModel)]="employeeService.selectedEmployee.code" placeholder="+91" maxlength="2" minlength="2" required>
+      <input type="text" style="width: 60%" class="form-control" (keypress)="restrictNumeric($event)" name="phone" #name="ngModel"
+        [(ngModel)]="employeeService.selectedEmployee.phone" placeholder="Phone No" maxlength="10" minlength="10" required>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Technology</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-windows"></i>
+      </div>
+      <select id="Id" name="ngModel" style="width: 70%" class="form-control" [(ngModel)]="nameId" name="Id">
+        <option selected="Microsoft">Microsoft</option>  
+        <option value="MEAN">MEAN</option>  
+        <option value="Big Data">Big Data</option>  
+        <option value="Open Source">Open Source</option>  
+        <option value="React">React</option>  
+</select>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <label>Position</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-star"></i>
+      </div>
+      <input class="form-control" maxlength="30" style="width: 70%" name="position" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.position"
+        placeholder="Position" required>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Office</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-briefcase"></i>
+      </div>
+      <input class="form-control" maxlength="30" style="width: 70%" name="office" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.office"
+        placeholder="Office" required>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Salary</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-dollar"></i>
+      </div>
+      <input class="form-control" maxlength="9" style="width: 70%" (keypress)="restrictNumeric($event)" name="salary" #name="ngModel"
+        [(ngModel)]="employeeService.selectedEmployee.salary" placeholder="Salary" required>
+    </div>
+  </div>
+
+  <form class="form-inline">
+      <div class="form-group">
+        <div class="input-group">
+            <input class="form-control" placeholder="yyyy-mm-dd"
+            name="dp"  ngbDatepicker #d="ngbDatepicker"
+           (click)="d.toggle()" >
+         
+        </div>
+      </div>
+    </form>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-success" (click)="setSaving($event.target, 'saved')" [disabled]="!employeeForm.valid"> <i class="fa fa-floppy-o"></i> Submit</button>
+    <button type="button" class="btn btn-danger" (click)="onDelete(employeeForm)" *ngIf="employeeService.selectedEmployee.$key!=''"> <i class="fa fa-trash"  ></i> Delete</button>
+    <button type="reset" class="btn btn-reset"> <i class="fa fa-repeat" (click) = "resetForm()" ></i> Reset</button>
+  </div>
+
+  <div class="form-group">
+    <button type="button" class="btn btn-success" (click)="refresh()">Refresh Page</button>
+  </div>
+</form>
+<pre>Model: {{ model | json }}</pre>
